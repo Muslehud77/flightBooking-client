@@ -6,9 +6,10 @@ import useAxios from "./../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-export default function FlightCard({ flight , home }) {
+export default function FlightCard({ flight, home, refetch }) {
   const navigate = useNavigate();
   const axios = useAxios();
+    
   const {
     _id,
     flight_number,
@@ -40,16 +41,13 @@ export default function FlightCard({ flight , home }) {
   };
 
   const removeBooking = async () => {
-    const bookingData = {
-      flight: _id,
-    };
-
     try {
-      const result = await axios.post("/bookings", bookingData, {
+      const result = await axios.delete(`/bookings/${_id}`, {
         withCredentials: true,
       });
+      console.log(result);
       if (result.data.success) {
-        navigate("/profile");
+        refetch()
         toast.success(result.data.message);
       }
       console.log(result.data);
@@ -168,6 +166,7 @@ export default function FlightCard({ flight , home }) {
           {!home && (
             <div className="flex justify-end mt-6">
               <Button
+                onClick={removeBooking}
                 variant="danger"
                 className="bg-red-500 text-white hover:bg-red-600"
               >

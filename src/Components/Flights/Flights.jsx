@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 
-import { Input } from "../ui/input";
+
 import { Button } from "../ui/button";
 import { Calendar } from "../ui/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 
-export default function Flights({ setQueryParams }) {
+export default function Flights({ setQueryParams, queryParams }) {
   const { register, handleSubmit, setValue, watch } = useForm();
 
   const onSubmit = (data) => {
@@ -19,14 +19,15 @@ export default function Flights({ setQueryParams }) {
     const day = String(date.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`;
 
-    const query = `?${data.departureDate ? `searchTerm=${formattedDate}` : ""}${
+    const query = `?${data.departureDate ? `searchTerm=${formattedDate}` : ""}&${
       data.departure ? `departure_airport=${data.departure}` : ""
     }${data.arrival ? `&arrival_airport=${data.arrival}` : ""}`;
-  
+
     setQueryParams(query);
-  
+   
   };
 
+  console.log(queryParams);
   // State to store selected date
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -188,10 +189,14 @@ export default function Flights({ setQueryParams }) {
               <option value="10">10 Passengers</option>
             </select>
           </div>
-          <div className="flex flex-col sm:col-span-2 lg:col-span-3">
+          <div className="flex gap-3 sm:col-span-2 lg:col-span-3">
             <Button type="submit" className="w-full">
               Search Flights
             </Button>
+            {
+              queryParams === "" ? "" : <Button className="w-1/4" onClick={()=>setQueryParams("")}>Clear Search</Button> 
+            }
+            
           </div>
         </form>
       </div>
