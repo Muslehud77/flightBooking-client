@@ -203,7 +203,7 @@ export default function Flights({ setQueryParams, queryParams }) {
               {...register("transit")}
               className="bg-gray-200 rounded-md py-2 px-4 w-full outline-none"
             >
-             
+              <option value="">Select transit time</option>
               <option value="3">3 Hours</option>
               <option value="4">4 Hours</option>
               <option value="5">5 Hours</option>
@@ -220,7 +220,13 @@ export default function Flights({ setQueryParams, queryParams }) {
             {queryParams === "" ? (
               ""
             ) : (
-              <Button className="w-1/4" onClick={() => {setQueryParams("");reset()}}>
+              <Button
+                className="w-1/4"
+                onClick={() => {
+                  setQueryParams("");
+                  reset();
+                }}
+              >
                 Clear Search
               </Button>
             )}
