@@ -4,40 +4,31 @@
 import { Navigate, useLocation } from "react-router-dom";
 
 import useContextInfo from "../../Hooks/useContextInfo";
-import { AnimatePresence } from "framer-motion";
 
 
 const PrivateRouteForLoginSignUp = ({children}) => {
 
-const {state} = useLocation()
+ const { user, loading } = useContextInfo();
+ const { pathname } = useLocation();
+console.log(user);
+ if (loading) {
+   return (
+     <>
+       <div className="absolute top-0 place-items-stretch h-screen w-full">
+         <div className="skeleton wave info" />
+       </div>
+     </>
+   );
+ }
 
+ if (!user.name) {
+   return children;
+ }
 
-return (
-  
-   {children}
-
-);
-
- 
-    // if(loading){
-    //     return (
-    //       <>
-    //         <div className="h-screen">
-    //           <div className="place-items-stretch h-screen w-full">
-    //             <div className="skeleton wave bg-[#6AC7BD]" />
-    //           </div>
-    //         </div>
-    //       </>
-    //     );
-    // }
-
-   
-
-    // return (
+ if (user) {
+   return <Navigate state={pathname} to={"/"}></Navigate>;
+ }
       
-    //     <Navigate key={'/'} to={`${state ? state : "/"}`}></Navigate>
-     
-    // );
 };
 
 export default PrivateRouteForLoginSignUp;

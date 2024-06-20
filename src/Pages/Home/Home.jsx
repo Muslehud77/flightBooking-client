@@ -1,3 +1,4 @@
+import NavBar from "../../Components/navigation/NavBar";
 
 
 
@@ -7,8 +8,8 @@ const Home = () => {
 
 
     return (
-      <div>
-    
+      <div className="relative">
+       <NavBar/>
       </div>
     );
 };

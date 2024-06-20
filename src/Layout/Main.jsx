@@ -7,7 +7,7 @@ const Main = () => {
 
   return (
     <>
-    hello
+
      <Outlet/>
     </>
   );

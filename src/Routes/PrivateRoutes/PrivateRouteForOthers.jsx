@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+
 
 import { Navigate, useLocation } from 'react-router-dom';
 import useContextInfo from '../../Hooks/useContextInfo';
 
 const PrivateRouteForOthers = ({children}) => {
-    const { user, loading, openLogin } = useContextInfo();
+    const { user, loading } = useContextInfo();
     const {pathname} = useLocation();
 
 
@@ -18,15 +18,14 @@ const PrivateRouteForOthers = ({children}) => {
        );
      }
 
-     if (user) {
+     
+     if (user?.name) {
       
        return children;
+     }else{
+      return <Navigate state={pathname} to={"/register"}></Navigate>;
      }
-
-     if(!user){
-      
-      return <Navigate state={pathname} to={"/"}></Navigate>;
-     }
+    
       
 
     
