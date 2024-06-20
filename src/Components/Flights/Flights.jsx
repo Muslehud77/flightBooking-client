@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
@@ -8,10 +9,22 @@ import { Button } from "../ui/button";
 import { Calendar } from "../ui/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
 
-export default function Flights() {
+export default function Flights({ setQueryParams }) {
   const { register, handleSubmit, setValue, watch } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const date = new Date(data?.departureDate);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const formattedDate = `${year}-${month}-${day}`;
+
+    const query = `?${data.departureDate ? `searchTerm=${formattedDate}` : ""}${
+      data.departure ? `departure_airport=${data.departure}` : ""
+    }${data.arrival ? `&arrival_airport=${data.arrival}` : ""}`;
+  
+    setQueryParams(query);
+  
   };
 
   // State to store selected date
@@ -21,7 +34,7 @@ export default function Flights() {
   const departureDate = watch("departureDate");
 
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8">
+    <div className="py-8 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 text-center">
           Find your next flight
@@ -34,21 +47,67 @@ export default function Flights() {
             <label htmlFor="departure" className="text-sm font-medium mb-1">
               Departure
             </label>
-            <Input
+            <select
               id="departure"
-              placeholder="Enter departure airport"
-              {...register("departure", { required: true })}
-            />
+              {...register("departure")}
+              className="bg-gray-200 rounded-md py-2 px-4 w-full outline-none"
+            >
+              <option value="">Select departure airport</option>
+              <option value="JFK">New York, USA (JFK)</option>
+              <option value="LAX">Los Angeles, USA (LAX)</option>
+              <option value="ORD">Chicago, USA (ORD)</option>
+              <option value="DFW">Dallas, USA (DFW)</option>
+              <option value="MIA">Miami, USA (MIA)</option>
+              <option value="ATL">Atlanta, USA (ATL)</option>
+              <option value="BOS">Boston, USA (BOS)</option>
+              <option value="SEA">Seattle, USA (SEA)</option>
+              <option value="SFO">San Francisco, USA (SFO)</option>
+              <option value="DEN">Denver, USA (DEN)</option>
+              <option value="LAS">Las Vegas, USA (LAS)</option>
+              <option value="PHX">Phoenix, USA (PHX)</option>
+              <option value="IAH">Houston, USA (IAH)</option>
+              <option value="CLT">Charlotte, USA (CLT)</option>
+              <option value="MSP">Minneapolis, USA (MSP)</option>
+              <option value="DTW">Detroit, USA (DTW)</option>
+              <option value="PHL">Philadelphia, USA (PHL)</option>
+              <option value="DCA">Washington D.C., USA (DCA)</option>
+              <option value="MCO">Orlando, USA (MCO)</option>
+              <option value="SLC">Salt Lake City, USA (SLC)</option>
+              <option value="SAN">San Diego, USA (SAN)</option>
+            </select>
           </div>
           <div className="flex flex-col">
             <label htmlFor="arrival" className="text-sm font-medium mb-1">
               Arrival
             </label>
-            <Input
+            <select
               id="arrival"
-              placeholder="Enter arrival airport"
-              {...register("arrival", { required: true })}
-            />
+              {...register("arrival")}
+              className="bg-gray-200 rounded-md py-2 px-4 w-full outline-none"
+            >
+              <option value="">Select arrival airport</option>
+              <option value="JFK">New York, USA (JFK)</option>
+              <option value="LAX">Los Angeles, USA (LAX)</option>
+              <option value="ORD">Chicago, USA (ORD)</option>
+              <option value="DFW">Dallas, USA (DFW)</option>
+              <option value="MIA">Miami, USA (MIA)</option>
+              <option value="ATL">Atlanta, USA (ATL)</option>
+              <option value="BOS">Boston, USA (BOS)</option>
+              <option value="SEA">Seattle, USA (SEA)</option>
+              <option value="SFO">San Francisco, USA (SFO)</option>
+              <option value="DEN">Denver, USA (DEN)</option>
+              <option value="LAS">Las Vegas, USA (LAS)</option>
+              <option value="PHX">Phoenix, USA (PHX)</option>
+              <option value="IAH">Houston, USA (IAH)</option>
+              <option value="CLT">Charlotte, USA (CLT)</option>
+              <option value="MSP">Minneapolis, USA (MSP)</option>
+              <option value="DTW">Detroit, USA (DTW)</option>
+              <option value="PHL">Philadelphia, USA (PHL)</option>
+              <option value="DCA">Washington D.C., USA (DCA)</option>
+              <option value="MCO">Orlando, USA (MCO)</option>
+              <option value="SLC">Salt Lake City, USA (SLC)</option>
+              <option value="SAN">San Diego, USA (SAN)</option>
+            </select>
           </div>
           <div className="flex flex-col">
             <label htmlFor="departureDate" className="text-sm font-medium mb-1">
@@ -114,57 +173,28 @@ export default function Flights() {
             </label>
             <select
               id="passengers"
-              {...register("passengers")}
+              {...register("passengers", { required: true })}
               className="bg-gray-200 rounded-md py-2 px-4 w-full outline-none"
             >
-              <option value="1">1 passenger</option>
-              <option value="2">2 passengers</option>
-              <option value="3">3 passengers</option>
-              <option value="4">4 passengers</option>
-              <option value="5">5 passengers</option>
-              <option value="6">6 passengers</option>
-              <option value="7">7 passengers</option>
-              <option value="8">8 passengers</option>
-              <option value="9">9 passengers</option>
-              <option value="10">10 passengers</option>
+              <option value="1">1 Passenger</option>
+              <option value="2">2 Passengers</option>
+              <option value="3">3 Passengers</option>
+              <option value="4">4 Passengers</option>
+              <option value="5">5 Passengers</option>
+              <option value="6">6 Passengers</option>
+              <option value="7">7 Passengers</option>
+              <option value="8">8 Passengers</option>
+              <option value="9">9 Passengers</option>
+              <option value="10">10 Passengers</option>
             </select>
           </div>
-          <Button
-            type="submit"
-            className="col-span-1 sm:col-span-2 lg:col-span-1 bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-2 focus:ring-primary/50"
-          >
-            Search Flights
-          </Button>
+          <div className="flex flex-col sm:col-span-2 lg:col-span-3">
+            <Button type="submit" className="w-full">
+              Search Flights
+            </Button>
+          </div>
         </form>
       </div>
     </div>
-  );
-}
-
-function CalendarDaysIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M8 2v4" />
-      <path d="M16 2v4" />
-      <rect width="18" height="18" x="3" y="4" rx="2" />
-      <path d="M3 10h18" />
-      <path d="M8 14h.01" />
-      <path d="M12 14h.01" />
-      <path d="M16 14h.01" />
-      <path d="M8 18h.01" />
-      <path d="M12 18h.01" />
-      <path d="M16 18h.01" />
-    </svg>
   );
 }
