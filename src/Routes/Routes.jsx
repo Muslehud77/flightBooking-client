@@ -8,6 +8,7 @@ import Register from "./../Pages/Register/Register";
 import ErrorPage from "./../Pages/404/ErrorPage";
 import PrivateRouteForOthers from "./PrivateRoutes/PrivateRouteForOthers";
 import PrivateRouteForLoginSignUp from './PrivateRoutes/PrivateRouteForLoginSignUp';
+import Profile from "../Pages/Profile/Profile";
 
 
 
@@ -22,6 +23,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRouteForOthers>
             <Home></Home>
+          </PrivateRouteForOthers>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRouteForOthers>
+            <Profile></Profile>
           </PrivateRouteForOthers>
         ),
       },

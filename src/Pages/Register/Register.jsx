@@ -8,7 +8,7 @@ const Register = () => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className="font-Outfit flex  justify-center items-center h-screen bg-gradient-to-r from-gray-200 to-blue-200">
+    <div className="font-Outfit flex  justify-center items-center h-screen">
       <div
         className={`relative bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl min-h-[480px] `}
         id="container"

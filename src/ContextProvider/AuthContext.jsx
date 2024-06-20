@@ -51,9 +51,9 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     setLoading(true);
-    const result = await axios.post("/auth/logout", { withCredentials: true });
-    console.log(user);
-    if (result.data.success) {
+    const result = await axios.get("/auth/logout", { withCredentials: true });
+    
+    if (result.data) {
       setUser([]);
       setLoading(false);
     }

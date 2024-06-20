@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@lottiefiles/lottie-player": "^2.0.2",
+    "@radix-ui/themes": "^3.0.5",
     "@react-icons/all-files": "^4.1.0",
     "@sira-ui/tailwind": "^0.11.8",
     "@stripe/react-stripe-js": "^2.4.0",
@@ -19,6 +20,7 @@
     "@vidstack/react": "^1.6.1",
     "alpinejs": "^3.13.3",
     "axios": "^1.6.2",
+    "class-variance-authority": "^0.7.0",
     "firebase": "^10.4.0",
     "framer-motion": "^10.16.5",
     "hamburger-react": "^2.5.0",
@@ -28,6 +30,7 @@
     "match-sorter": "^6.3.1",
     "preline": "^2.0.2",
     "react": "^18.2.0",
+    "react-day-picker": "^8.10.1",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.2",
@@ -47,6 +50,7 @@
     "stripe": "^14.5.0",
     "sweetalert2": "^11.10.1",
     "swiper": "^11.0.5",
+    "tailwind-merge": "^2.3.0",
     "tw-elements": "^1.0.0"
   },
   "devDependencies": {
