@@ -1,0 +1,16 @@
+/* *{
+    color: #61e9fb
+} */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Outfit:wght@100..900&display=swap');
+
+
+.skeleton { 
+    background-color: rgb(5, 5, 5) !important;
+    background-image: linear-gradient( 105deg, transparent 0%, transparent 10%, rgb(0, 109, 109) 50%, transparent 60%, transparent 100% ) !important;
+   
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
