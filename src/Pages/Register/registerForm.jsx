@@ -34,7 +34,10 @@ const RegistrationForm = ({ isActive }) => {
     try {
       const result = await signUp(userData);
       console.log(result); 
-      navigate("/")// Handle the response data
+      // if(result.data){
+
+      //   navigate("/")// Handle the response data
+      // }
     } catch (error) {
       console.log(error);
       if (error.response.data.message === "Duplicate") {
@@ -61,7 +64,7 @@ const RegistrationForm = ({ isActive }) => {
         <input
           className="bg-gray-200 rounded-md py-2 px-4 w-full outline-none"
           placeholder="Name"
-          {...register("name")}
+          {...register("name", { required: true })}
         />
 
         {errors.name && <span className="text-red-500">Name is required</span>}

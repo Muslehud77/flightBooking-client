@@ -24,7 +24,7 @@ const Profile = () => {
               : "No Bookings Available"}
           </h2>
         )}
-        {bookings.length &&
+        {
           bookings?.map((booking) => (
             <FlightCard
               refetch={refetch}

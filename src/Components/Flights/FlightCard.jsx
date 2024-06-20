@@ -5,7 +5,7 @@ import { convertDate } from "./../../utils/convertDate";
 import useAxios from "./../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
+import { MdOutlineAirplaneTicket } from "react-icons/md";
 export default function FlightCard({ flight, home, refetch }) {
   const navigate = useNavigate();
   const axios = useAxios();
@@ -19,6 +19,7 @@ export default function FlightCard({ flight, home, refetch }) {
     arrival_time,
     total_seats,
     available_seats,
+    transit_time_hours,
   } = flight;
 
   const bookFlight = async () => {
@@ -161,6 +162,24 @@ export default function FlightCard({ flight, home, refetch }) {
               <div className="text-gray-700 dark:text-gray-300">
                 {available_seats}
               </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              {transit_time_hours ? (
+                <>
+                  {" "}
+                  <div className="flex items-center gap-2">
+                    <MdOutlineAirplaneTicket className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                    <span className="text-gray-900 dark:text-gray-100 font-medium">
+                      Transit
+                    </span>
+                  </div>
+                  <div className="text-gray-700 dark:text-gray-300">
+                    {transit_time_hours} Hours
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           {!home && (

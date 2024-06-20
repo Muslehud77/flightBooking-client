@@ -32,7 +32,10 @@ const navigate = useNavigate();
     try {
       const result = await signIn(userData);
       console.log(result); 
-      navigate("/")
+      // if(result.data){
+
+      //   navigate("/")
+      // }
      
     } catch (error) {
       if (error.response.data.message) {

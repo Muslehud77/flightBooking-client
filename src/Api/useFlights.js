@@ -12,7 +12,7 @@ const useFlights = (queryParams) => {
   } = useQuery({
     queryKey: ["flights"],
     queryFn: async () => {
-      const res = await axios.get(`/flights${queryParams}`);
+      const res = await axios.get(`/flights?${queryParams}`);
       return res.data.data;
     },
   });

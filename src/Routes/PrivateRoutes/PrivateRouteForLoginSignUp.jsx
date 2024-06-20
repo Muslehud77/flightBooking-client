@@ -10,7 +10,12 @@ const PrivateRouteForLoginSignUp = ({children}) => {
 
  const { user, loading } = useContextInfo();
  const { pathname } = useLocation();
-console.log(user);
+
+ 
+  if (!user?.name) {
+    return children;
+  }
+
  if (loading) {
    return (
      <>
@@ -21,11 +26,7 @@ console.log(user);
    );
  }
 
- if (!user.name) {
-   return children;
- }
-
- if (user) {
+ if (user?.name) {
    return <Navigate state={pathname} to={"/"}></Navigate>;
  }
       

@@ -41,9 +41,6 @@ const AuthProvider = ({ children }) => {
     });
     if (result?.data?.data) {
       setUser(result?.data?.data);
-      
-
-      setLoading(false);
     }
     setLoading(false);
     return result.data;
