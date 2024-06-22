@@ -80,7 +80,10 @@ npm run lint
 - `lint`: Lints the code using ESLint.
 - `preview`: Previews the production build.
 
+## Server Repository
 
+The server-side code for this project can be found in the following repository:
+[Flight Booking Server](https://github.com/Muslehud77/flightBooking-server)
 
 ---
 
