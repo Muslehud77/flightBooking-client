@@ -32,7 +32,7 @@ export default function Flights({ setQueryParams, queryParams }) {
     setQueryParams(query);
   };
 
-  console.log(queryParams);
+ 
   // State to store selected date
   const [selectedDate, setSelectedDate] = useState(null);
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://flightbooking-kappa.vercel.app/api",
+  baseURL: import.meta.env.BASE_URL,
 });
 
 const useAxios = () => {
